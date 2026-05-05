@@ -1,142 +1,185 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
-
-.main {
-  display: flex;
-  flex: 1;
+  min-height: 100vh;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  padding: 56px 24px;
+  background:
+    radial-gradient(
+      ellipse 70% 38% at top center,
+      rgba(250, 204, 21, 0.18),
+      transparent 65%
+    ),
+    linear-gradient(135deg, #080808 0%, #141414 50%, #050505 100%);
+  color: #f9fafb;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.header {
+  max-width: 1180px;
+  margin: 0 auto 42px;
+  animation: fadeUp 0.7s ease both;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+.badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: #e2a0241f;
+  color: #facc15;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
-.intro p {
-  max-width: 440px;
+.header h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: #ffffff;
+  font-size: 56px;
+  line-height: 1.05;
+}
+
+.header p {
+  max-width: 680px;
+  color: #d1d5db;
   font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
+.gyms {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
 }
 
-.ctas {
-  display: flex;
-  flex-direction: row;
+.gymCard {
+  overflow: hidden;
+  border: 1px solid rgba(250, 204, 21, 0.18);
+  border-radius: 8px;
+  background: rgba(24, 24, 27, 0.88);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  transform: translateY(18px);
+  opacity: 0;
+  animation: cardEnter 0.7s ease both;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.gymCard:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.gymCard:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.gymCard:nth-child(3) {
+  animation-delay: 0.23s;
+}
+
+.gymCard:nth-child(4) {
+  animation-delay: 0.32s;
+}
+
+.gymCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(250, 204, 21, 0.7);
+  box-shadow: 0 28px 70px rgba(250, 204, 21, 0.12);
+}
+
+.gymCard img {
   width: 100%;
-  max-width: 440px;
-  gap: 16px;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  background: #262626;
+  filter: grayscale(0.15) contrast(1.05);
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.gymCard:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0) contrast(1.12);
+}
+
+.gymContent {
+  padding: 20px;
+}
+
+.gymContent h2 {
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.location {
+  margin-bottom: 8px;
+  color: #facc15;
   font-size: 14px;
+  font-weight: 800;
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
+.area {
   width: fit-content;
-  font-weight: 500;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(250, 204, 21, 0.13);
+  color: #fde68a;
+  font-size: 13px;
+  font-weight: 700;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.info {
+  color: #d4d4d8;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
   .page {
-    --background: #000;
-    --foreground: #000;
+    padding: 36px 16px;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  .header {
+    margin-bottom: 30px;
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .header h1 {
+    font-size: 38px;
+  }
+
+  .header p {
+    font-size: 16px;
+  }
+
+  .gymCard img {
+    height: 170px;
   }
 }

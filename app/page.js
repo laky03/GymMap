@@ -1,66 +1,53 @@
-import Image from "next/image";
+import GymCard from "@/components/gym-card";
 import styles from "./page.module.css";
+
+const gyms = [
+  {
+    id: 1,
+    name: "Aura Fitness Centar",
+    location: "Bulevar Svetog cara Konstantina 4",
+    area: "350m2 prostora",
+    info: "Moderna teretana sa kardio sobom, parkingom i trenerima.",
+    images: ["/images/aura1.jpg", "/images/aura2.jpg", "/images/aura3.jpg"],
+  },
+  {
+    id: 2,
+    name: "One Wellness & SPA",
+    location: "21. maj 1",
+    area: "1000m2 prostora",
+    info: "Veliki fitness i wellness centar sa teretanom na vise nivoa.",
+    images: ["/images/one1.jpg", "/images/one2.jpg", "/images/one3.jpg"],
+  },
+  {
+    id: 3,
+    name: "gym town 1",
+    location: "Kraljevića Marka 23",
+    area: "Fitness centar",
+    info: "Teretana za trening snage i kondicije.",
+    images: [
+      "/images/gymtown11.jpg",
+      "/images/gymtown12.jpg",
+      "/images/gymtown13.jpg",
+    ],
+  },
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <h1>Pronadji teretanu koja ti odgovara</h1>
+        <p>
+          Pregled teretana u Nisu sa osnovnim informacijama, lokacijom i
+          detaljima koji pomazu pri izboru mesta za trening.
+        </p>
+      </header>
+
+      <section className={styles.gyms}>
+        {gyms.map((gym) => (
+          <GymCard key={gym.id} gym={gym} />
+        ))}
+      </section>
+    </main>
   );
 }

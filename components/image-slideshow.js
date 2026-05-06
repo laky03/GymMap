@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import classes from "./image-slideshow.module.css";
 
-export default function ImageSlideshow({ images, alt, isActive }) {
+export default function ImageSlideshow({
+  images,
+  alt,
+  isActive,
+  interval = 800,
+}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -13,14 +18,14 @@ export default function ImageSlideshow({ images, alt, isActive }) {
       return;
     }
 
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex < images.length - 1 ? prevIndex + 1 : 0,
       );
-    }, 800);
+    }, interval);
 
-    return () => clearInterval(interval);
-  }, [isActive, images.length]);
+    return () => clearInterval(timer);
+  }, [isActive, images.length, interval]);
 
   return (
     <div className={classes.slideshow}>

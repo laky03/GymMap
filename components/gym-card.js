@@ -18,7 +18,7 @@ export default function GymCard({ gym }) {
         <h2>{gym.name}</h2>
         <p className={styles.location}>{gym.location}</p>
         <p className={styles.area}>{gym.area}</p>
-        <p className={styles.info}>{gym.info}</p>
+        <p className={styles.info}>{gym.infohome}</p>
       </div>
     </article>
   );
